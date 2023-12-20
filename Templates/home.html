@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+<div class="container mt-5">
+    <h2>Playlist Length Counter</h2>
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if playlist_length %}
+    <p>Playlist Length: {{ playlist_length }}</p>
+    {% endif %}
+</div>
+{% endblock %}
