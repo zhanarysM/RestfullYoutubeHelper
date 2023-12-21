@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .utils import get_stats, get_playlist_length
 from .forms import PlaylistForm
-from .models import Playlist
+from .models import Playlist as pl
 from pytube import *
 # Create your views here.
 
@@ -21,7 +21,7 @@ def home(request):
             # Assuming you have a function to get the playlist length
             playlist_length = get_playlist_length(playlist_id)
             # Save the playlist information in the database
-            Playlist.objects.create(playlist_id=playlist_id, playlist_length=playlist_length)
+            pl.objects.create(playlist_id=playlist_id, playlist_length=playlist_length)
     else:
         form = PlaylistForm()
 
