@@ -26,6 +26,7 @@ urlpatterns = [
     path('signup/', account_views.signup, name='signup'),
     path('login/', account_views.log_in, name='login'),
     path('logout/', account_views.log_out, name='logout'),
-    path('downloader/', youtube_helper_views.downloader, name='downloader')
+    path('downloader/', youtube_helper_views.downloader, name='downloader'),
+    path('transcriber/',  youtube_helper_views.transcriber, name='transcriber')
 ]
 

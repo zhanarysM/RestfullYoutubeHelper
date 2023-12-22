@@ -3,6 +3,8 @@ import re
 from datetime import timedelta
 from googleapiclient.discovery import build
 from django.conf import settings
+from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.formatters import TextFormatter
 
 
 def get_playlists(channel_id):
@@ -50,6 +52,7 @@ def get_playlist_length(playlist_id):
     minutes_pattern = re.compile(r'(\d+)M')
     seconds_pattern = re.compile(r'(\d+)S')
 
+
     total_seconds = 0
 
     nextPageToken = None
@@ -57,7 +60,7 @@ def get_playlist_length(playlist_id):
     while True:
         pl_request = youtube.playlistItems().list(
             part='contentDetails',
-            playlistId="PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU",
+            playlistId=playlist_id,
             maxResults=50,
             pageToken=nextPageToken
         )
@@ -109,4 +112,7 @@ def get_playlist_length(playlist_id):
 
     return playlist_duration
 
-
+def extract_playlist_id(url):
+    pattern = re.compile(r'(?<=list=)[\w-]+')
+    match = pattern.search(url)
+    return match.group(0) if match else None

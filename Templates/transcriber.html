@@ -3,8 +3,8 @@
 {% block content%}
 
 <div class="container mt-5">
-    <h2>Playlist Length Counter</h2>
-    <form method="post" action="{% url 'home' %}">
+    <h2>Video Transcriber</h2>
+    <form method="post" action="{% url 'transcriber' %}">
         {% csrf_token %}
         {{ form }}
         <br>
@@ -15,8 +15,9 @@
     <p style="color: red;">{{ error_message }}</p>
     {% endif %}
 
-    {% if playlist_length is not None %}
-    <p>Playlist Length: {{ playlist_length }}</p>
+    {% if video_text is not None %}
+    <p>Video Transcript: <br> {{ video_text }}</p>
     {% endif %}
+
 </div>
 {% endblock %}
